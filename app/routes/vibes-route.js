@@ -39,6 +39,7 @@ router.route('/')
       .exec(function (error, project) {
         if(!project) project = new Project;
 
+        project.emotions = Vision.call().emotions;
         project.name = repo_url;
         project.url = repo_url;
         project.vibes.push(vibe._id);
@@ -56,29 +57,6 @@ router.route('/')
     .find()
     .populate('vibes')
     .exec((err, projects) => {
-      projects.map(function(project, index) {
-        var smile = 0;
-        var surprise = 0;
-        var negative = 0;
-        var attention = 0;
-        var amount_of_vibes = project.vibes.length;
-        project.emotions = {};
-
-        project.vibes.forEach(function(value, index) {
-          smile += parseFloat(value.emotions.smile);
-          surprise += parseFloat(value.emotions.surprise);
-          negative += parseFloat(value.emotions.negative);
-          attention += parseFloat(value.emotions.attention);
-        });
-
-        project.emotions.smile = parseFloat(smile) / amount_of_vibes;
-        project.emotions.surprise = parseFloat(surprise) / amount_of_vibes;
-        project.emotions.negative = parseFloat(negative) / amount_of_vibes;
-        project.emotions.attention = parseFloat(attention) / amount_of_vibes;
-
-        return project;
-      });
-
       return resUtil.success(res, projects);
     });
   });

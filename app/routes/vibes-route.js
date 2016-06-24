@@ -5,7 +5,6 @@ const resUtil = require('./../utils/res-util');
 
 const Vibe = require('./../models/vibe');
 
-// /api/comments
 router.route('/')
 
   .post((req, res) => {
@@ -14,7 +13,7 @@ router.route('/')
     vibe.save(function(error) {
       if(error) throw err;
 
-      Project.find({ url: req.body.url}, function (error, project) {
+      Project.find({ url: req.body.url }, function (error, project) {
         if(!project) {
           project = new Project();
         }

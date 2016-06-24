@@ -37,6 +37,25 @@ router.route('/')
     .find()
     .populate('vibes')
     .exec((err, projects) => {
+      projects.forEach(function(project, index) {
+        let smile = 0;
+        let surprise = 0;
+        let negative = 0;
+        let attention = 0;
+        let amount_of_vibes = project.vibes.length;
+        project.emotions = {};
+
+        project.vibes.forEach(function(value, index) {
+          smile += value.emotions.smile;
+          surprise += value.emotions.surprise;
+          negative += value.emotions.negative;
+          attention += value.emotions.attention;
+        });
+        project.emotions.smile = smile/amount_of_vibes;
+        project.emotions.surprise = surprise/amount_of_vibes;
+        project.emotions.negative = negative/amount_of_vibes;
+        project.emotions.attention = attention/amount_of_vibes;
+      });
       return resUtil.success(res, projects);
     });
   });

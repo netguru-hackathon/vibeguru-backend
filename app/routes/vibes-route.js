@@ -56,25 +56,27 @@ router.route('/')
     .find()
     .populate('vibes')
     .exec((err, projects) => {
-      projects.forEach(function(project, index) {
-        let smile = 0;
-        let surprise = 0;
-        let negative = 0;
-        let attention = 0;
-        let amount_of_vibes = project.vibes.length;
+      projects.map(function(project, index) {
+        var smile = 0;
+        var surprise = 0;
+        var negative = 0;
+        var attention = 0;
+        var amount_of_vibes = project.vibes.length;
         project.emotions = {};
 
         project.vibes.forEach(function(value, index) {
-          smile += value.emotions.smile;
-          surprise += value.emotions.surprise;
-          negative += value.emotions.negative;
-          attention += value.emotions.attention;
+          smile += parseFloat(value.emotions.smile);
+          surprise += parseFloat(value.emotions.surprise);
+          negative += parseFloat(value.emotions.negative);
+          attention += parseFloat(value.emotions.attention);
         });
 
-        project.emotions.smile = smile/amount_of_vibes;
-        project.emotions.surprise = surprise/amount_of_vibes;
-        project.emotions.negative = negative/amount_of_vibes;
-        project.emotions.attention = attention/amount_of_vibes;
+        project.emotions.smile = parseFloat(smile) / amount_of_vibes;
+        project.emotions.surprise = parseFloat(surprise) / amount_of_vibes;
+        project.emotions.negative = parseFloat(negative) / amount_of_vibes;
+        project.emotions.attention = parseFloat(attention) / amount_of_vibes;
+
+        return project;
       });
 
       return resUtil.success(res, projects);

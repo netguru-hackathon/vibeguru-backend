@@ -12,6 +12,7 @@ class VisionAPI {
         "surprise": this.randomize_emotion(),
         "negative": this.randomize_emotion(),
         "attention": this.randomize_attention()
+      }
     };
   }
 

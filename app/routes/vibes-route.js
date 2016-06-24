@@ -8,6 +8,9 @@ const resUtil = require('./../utils/res-util');
 const Vibe = require('./../models/vibe');
 const Project = require('./../models/project');
 
+const VisionApi = require('./../utils/vision_api');
+const Vision = new VisionApi;
+
 router.route('/')
 
   .post((req, res) => {
@@ -24,6 +27,8 @@ router.route('/')
     });
 
     vibe.image = config.host + ':' + config.port + image;
+
+    vibe.emotions = Vision.call().emotions;
 
     vibe.save(function(error) {
       if (error) throw err;
@@ -65,11 +70,13 @@ router.route('/')
           negative += value.emotions.negative;
           attention += value.emotions.attention;
         });
+
         project.emotions.smile = smile/amount_of_vibes;
         project.emotions.surprise = surprise/amount_of_vibes;
         project.emotions.negative = negative/amount_of_vibes;
         project.emotions.attention = attention/amount_of_vibes;
       });
+
       return resUtil.success(res, projects);
     });
   });

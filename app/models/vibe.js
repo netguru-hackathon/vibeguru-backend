@@ -8,7 +8,7 @@ const vibeSchema = new Schema({
     smile: { type: Number },
     surprise: { type: Number },
     negative: { type: Number },
-    attetion: { type: Number }
+    attention: { type: Number }
   },
   project: { type: Schema.Types.ObjectId, ref: 'Project' }
 });

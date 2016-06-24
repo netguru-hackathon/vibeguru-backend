@@ -1,0 +1,33 @@
+{
+  "name": "vibeguru-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --use_strict server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-jwt": "^3.3.0",
+    "http": "0.0.0",
+    "jsonwebtoken": "^6.1.0",
+    "mongoose": "^4.4.13"
+  },
+  "devDependencies": {
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

@@ -9,7 +9,7 @@ const vibeSchema = new Schema({
     surprise: { type: Number },
     negative: { type: Number },
     attetion: { type: Number }
-  }
+  },
   project: { type: Schema.Types.ObjectId, ref: 'Project' }
 });
 

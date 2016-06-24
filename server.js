@@ -29,5 +29,6 @@ app.use((err, req, res, next) => {
 
 // Register router
 app.use('/api', router);
+app.use('/uploads', express.static('uploads'));
 
 console.log('Server listen on ' + config.host + ':' + config.port);

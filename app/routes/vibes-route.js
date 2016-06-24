@@ -3,7 +3,7 @@
 const router = require('express').Router();
 const resUtil = require('./../utils/res-util');
 
-const Comment = require('./../models/comment');
+const Vibe = require('./../models/vibe');
 
 // /api/comments
 router.route('/')

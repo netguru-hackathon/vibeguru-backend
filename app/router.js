@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const commentsRoute = require('./routes/comments-route');
+const vibesRouter = require('./routes/vibes-route');
 
 router.get('/', (req, res) => {
   res.json({ message: 'Welcome to vibeguru API' });
 });
 
-router.use('/comments', commentsRoute);
+router.use('/vibes', vibesRouter);
 
 module.exports = router;
